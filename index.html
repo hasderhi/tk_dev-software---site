@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tk_dev - Software</title>
+  <meta name="description" content="tk_dev - Software with passion!" />
+  <link rel="icon" type="image/x-icon" href="favicon.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <section id="hero">
+    <h1 class="hero-title">tk_dev - Software</h1>
+    <h2 class="hero-subtitle">Tools, Scripts and more...</h2>
+    <div class="link-buttons">
+    <a class="link-button" href="https://www.hasderhi.dev">Visit my portfolio</a>
+    <a class="link-button" href="appsupport.html">Support</a>
+    </div>
+  </section>
+
+  <section id="search-bar">
+    <input type="text" id="searchInput" placeholder="Search projects..." />
+  </section>
+
+  <section id="project-listing">
+    <ul id="projectList">
+        <li class="project-item">
+            <a href="image_converter_cli.html">Image Converter CLI</a>
+            <div class="tags">
+                <span class="tag python">Python</span>
+            </div>
+            <p>A universal image converter supporting multiple formats.</p>
+        </li>
+        <li class="project-item">
+            <a href="">Finance Tracker</a>
+            <div class="tags">
+                <span class="tag python">Python</span>
+                <span class="tag unavailable">Not available</span>
+                <span class="tag indev">In Development</span>
+            </div>
+            <p>A local-first finance managment tool with SHA256 encryption, CSV im/export, automatic categorization and more. Currently in development.</p>
+        </li>
+        <li class="project-item">
+            <a href="">tkEdit</a>
+            <div class="tags">
+                <span class="tag rust">Rust</span>
+                <span class="tag unavailable">Not available</span>
+                <span class="tag indev">In Development</span>
+            </div>
+            <p>An code editor with live-sharing functionality based on Rust. Currently in early development.</p>
+        </li>
+        <li class="project-item">
+            <a href="">NovaShell</a>
+            <div class="tags">
+                <span class="tag cpp">C++</span>
+                <span class="tag unavailable">Not available</span>
+                <span class="tag indev">In Development</span>
+            </div>
+            <p>A terminal app that bridges the gap between your IDE and your project. Comes with many useful tools. Currently in early development.</p>
+        </li>
+        <li class="project-item">
+            <a href="decrypted_title.html">Decrypted - Escape Room</a>
+            <div class="tags">
+                <span class="tag web">Web</span>
+                <span class="tag indev">In Development</span>
+            </div>
+            <p>Browser-based puzzle game with a simulated OS and hacking tools.</p>
+        </li>
+        <li class="project-item">
+            <a href="html_editor.html">HTML Editor</a>
+            <div class="tags">
+                <span class="tag python">Python</span>
+            </div>
+            <p>Simple multiplatform editor for HTML, CSS, JS and Markdown.</p>
+        </li>
+        <li class="project-item">
+            <a href="lan_fileshare.html">LANFileShare</a>
+            <div class="tags">
+                <span class="tag csharp">C#</span>
+                <span class="tag web">Web</span>
+            </div>
+            <p>Windows app that makes sharing files locally simple.</p>
+        </li>
+        <li class="project-item">
+            <a href="winwebserver.html">WinWebServer</a>
+            <div class="tags">
+                <span class="tag csharp">C#</span>
+                <span class="tag web">Web</span>
+            </div>
+            <p>Simple and easy-to-setup webserver for Windows.</p>
+        </li>
+        <li class="project-item">
+            <a href="mouseclicktracker.html">MouseClickTracker</a>
+            <div class="tags">
+                <span class="tag csharp">C#</span>
+            </div>
+            <p>Tracks mouseclicks and displays them on a heatmap.</p>
+        </li>
+        <li class="project-item">
+            <a href="customfileexplorer.html">CustomFileExplorer</a>
+            <div class="tags">
+                <span class="tag csharp">C#</span>
+            </div>
+            <p>Custom alternative to Windows Explorer.</p>
+        </li>
+        <li class="project-item">
+            <a href="md2htmldn.html">md2html.NET</a>
+            <div class="tags">
+                <span class="tag csharp">C#</span>
+                <span class="tag discon">Discontinued</span>
+            </div>
+            <p>Windows app to convert markdown to HTML.</p>
+        </li>
+        <li class="project-item">
+            <a href="xlsconverter.html">XLSconverter</a>
+            <div class="tags">
+                <span class="tag csharp">C#</span>
+                <span class="tag discon">Discontinued</span>
+            </div>
+            <p>Batch conversion of .xls > .xlsx files made simple by this Windows app.</p>
+        </li>
+        <li class="project-item">
+            <a href="bubble_ss.html">Bubble Screensaver</a>
+            <div class="tags">
+                <span class="tag python">Python</span>
+            </div>
+            <p>It's a screensaver... with bubbles. Because why not?</p>
+        </li>
+        <li class="project-item">
+            <a href="bwb3.html">Bewertungsbogen3</a>
+            <div class="tags">
+                <span class="tag python">Python</span>
+            </div>
+            <p>Create educational rating forms with this app.</p>
+        </li>
+        <li class="project-item">
+            <a href="snake.html">Snake</a>
+            <div class="tags">
+                <span class="tag web">Web</span>
+            </div>
+            <p>It's the snake game. Nothing more or less.</p>
+        </li>
+        <li class="project-item no-results" style="display: none;">
+            <strong>No results found.</strong>
+            <p>Try a different keyword.</p>
+        </li>
+    </ul>
+  </section>
+  <footer>
+    <p style="text-align: center; margin-top: 10%;">Copyright (c) 2023-2025 Tobias Kisling ('hasderhi', 'tk_dev'). All rights reserved.</p>
+  </footer>
+<script>
+    const input = document.getElementById("searchInput");
+    const items = document.querySelectorAll(".project-item:not(.no-results)");
+    const noResults = document.querySelector(".no-results");
+
+    input.addEventListener("input", () => {
+        const filter = input.value.toLowerCase();
+        let visibleCount = 0;
+
+        items.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        const matches = text.includes(filter);
+        item.style.display = matches ? "" : "none";
+        if (matches) visibleCount++;
+        });
+
+        noResults.style.display = visibleCount === 0 ? "" : "none";
+    });
+</script>
+</body>
+</html>

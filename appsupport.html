@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Support - tk_dev</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="support.css" />
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    emailjs.init("PshI1tkda7sbTfQat");
+  </script>
+</head>
+<body>
+  <section class="support-form">
+    <h1>Need Help?</h1>
+    <p>Fill out the form and I'll get back to you as soon as possible.<br>
+    For general questions or contacting the developer, please use <a href="https://www.hasderhi.dev/contact">this form</a>.
+    </p>
+    <div class="link-buttons">
+        <a class="link-button" href="https://www.hasderhi.dev/contact">Developer Contact</a>
+        <a class="link-button" href="index.html">Back</a>
+    </div>
+    <form id="supportForm">
+      <input type="hidden" name="time" id="time" />
+
+      <label for="from_name">Your Name</label>
+      <input type="text" id="from_name" name="from_name" required />
+
+      <label for="reply_to">Your Email</label>
+      <input type="email" id="reply_to" name="reply_to" required />
+
+      <label for="program">Which program?</label>
+      <select id="program" name="program" required>
+        <option value="">-- Select --</option>
+        <option value="Image Converter CLI">Image Converter CLI</option>
+        <option value="Image Converter CLI">Finance Manager</option>
+        <option value="tkEdit">tkEdit</option>
+        <option value="NovaShell">NovaShell</option>
+        <option value="Decrypted - Escape Room">Decrypted - Escape Room</option>
+        <option value="HTML Editor">HTML Editor</option>
+        <option value="LANFileShare">LANFileShare</option>
+        <option value="WinWebServer">WinWebServer</option>
+        <option value="MouseClickTracker">MouseClickTracker</option>
+        <option value="CustomFileExplorer">CustomFileExplorer</option>
+        <option value="md2html.NET">md2html.NET</option>
+        <option value="XLSconverter">XLSconverter</option>
+        <option value="Bubble Screensaver">Bubble Screensaver</option>
+        <option value="Bewertungsbogen3">Bewertungsbogen3</option>
+        <option value="Snake game">Snake</option>
+        <option value="Other">Other (Please include in your message)</option>
+      </select>
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+
+      <button type="submit">Send Support Request</button>
+      <div id="statusMessage" class="hidden"></div>
+    </form>
+  </section>
+
+  <script>
+    document.getElementById("supportForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const now = new Date().toLocaleString();
+  document.getElementById("time").value = now;
+
+  emailjs.sendForm("service_zfpgejv", "template_9s2ekhp", this)
+    .then(() => {
+      document.getElementById("statusMessage").textContent = "Message sent successfully!";
+      document.getElementById("statusMessage").style.color = "green";
+      this.reset();
+    }, (err) => {
+      document.getElementById("statusMessage").textContent = "Failed to send. Please try again.";
+      document.getElementById("statusMessage").style.color = "red";
+    });
+});
+
+  </script>
+</body>
+</html>

@@ -210,6 +210,10 @@ body {
   color: black;
 }
 
+.tag.comingsoon {
+  background-color: #d11b76;
+}
+
 .tag.discon {
   background-color: #505050;
 }

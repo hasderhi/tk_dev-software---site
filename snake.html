@@ -9,18 +9,189 @@
   <link rel="icon" type="image/x-icon" href="favicon.png" />
   <link rel="stylesheet" href="style.css"/>
   <link rel="stylesheet" href="subsites.css">
+      <style>
+        canvas {
+            margin: 10px;
+            border: 10px solid rgb(148, 148, 148);
+            background-color: black;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .canvas-container {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            align-items: center;
+            max-width: fit-content;
+            margin-right: auto;
+            margin-bottom: 10%;
+            font-family: Verdana;
+            text-align: center;
+        }
+        body {
+            overflow: hidden; 
+        }
+      </style>
 </head>
 <body>
   <div class="preview-container">
     <h1 class="preview-title">Snake game</h1>
 
-    <img src="" alt="No image available" class="preview-image" />
+    <div class="canvas-container">
+        <canvas id="gameCanvas" width="400" height="400"></canvas>
+    </div>
 
     <p class="preview-description">
       A very simple version of the game 'Snake' done in JS. One of my first projects learning to code.
+      <br>
+      Press <kbd>Space</kbd> to start/pause and the <kbd>Arrow keys</kbd> to steer.
     </p>
     <a class="download-button" href="https://github.com/hasderhi/Snake" target="_blank">Download</a>
     <a class="cancel-button" href="index.html">Home</a>
   </div>
+  <script>
+        // Get the canvas element
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Set the canvas dimensions
+        canvas.width = 400;
+        canvas.height = 400;
+
+        // Set the snake and food dimensions
+        const snakeSize = 20;
+        const foodSize = 20;
+
+        // Set the initial snake position and direction
+        let snake = [
+            { x: canvas.width / 2, y: canvas.height / 2 },
+            { x: canvas.width / 2 - snakeSize, y: canvas.height / 2 },
+            { x: canvas.width / 2 - snakeSize * 2, y: canvas.height / 2 },
+        ];
+        let direction = 'right';
+
+        // Set the initial food position
+        let food = {
+            x: Math.floor(Math.random() * (canvas.width / snakeSize)) * snakeSize,
+            y: Math.floor(Math.random() * (canvas.height / snakeSize)) * snakeSize,
+        };
+
+        // Set the score and high score
+        let score = 0;
+
+        // Game state
+        let isPaused = true;
+
+        // Draw the game
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw the snake
+            for (let i = 0; i < snake.length; i++) {
+                ctx.fillStyle = 'green';
+                ctx.fillRect(snake[i].x, snake[i].y, snakeSize, snakeSize);
+            }
+
+            // Draw the food
+            ctx.fillStyle = 'red';
+            ctx.fillRect(food.x, food.y, foodSize, foodSize);
+
+            // Draw the score and high score
+            ctx.fillStyle = 'white';
+            ctx.font = '24px Arial';
+            ctx.textAlign = 'left';
+            ctx.textBaseline = 'top';
+            ctx.fillText(`Score: ${score}`, 10, 10);
+
+            // Draw pause message if paused
+            if (isPaused) {
+                ctx.fillStyle = 'white';
+                ctx.font = '30px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText('PAUSED', canvas.width / 2, canvas.height / 2);
+            }
+        }
+
+        // Update the game state
+        function update() {
+            if (isPaused) return; // Do not update if paused
+
+            // Update the snake position
+            for (let i = snake.length - 1; i > 0; i--) {
+                snake[i].x = snake[i - 1].x;
+                snake[i].y = snake[i - 1].y;
+            }
+
+            // Update the snake head position based on the direction
+            if (direction === 'right') {
+                snake[0].x += snakeSize;
+            } else if (direction === 'left') {
+                snake[0].x -= snakeSize;
+            } else if (direction === 'up') {
+                snake[0].y -= snakeSize;
+            } else if (direction === 'down') {
+                snake[0].y += snakeSize;
+            }
+
+            // Check for collision with the walls
+            if (snake[0].x < 0 || snake[0].x >= canvas.width || snake[0].y < 0 || snake[0].y >= canvas.height) {
+                gameOver();
+            }
+
+            // Check for collision with the snake body
+            for (let i = 1; i < snake.length; i++) {
+                if (snake[0].x === snake[i].x && snake[0].y === snake[i].y) {
+                    gameOver();
+                }
+            }
+
+            // Check if the snake eats the food
+            if (snake[0].x === food.x && snake[0].y === food.y) {
+                score++;
+                snake.push({ x: snake[snake.length - 1].x, y: snake[snake.length - 1].y });
+                food = {
+                    x: Math.floor(Math.random() * (canvas.width / snakeSize)) * snakeSize,
+                    y: Math.floor(Math.random() * (canvas.height / snakeSize)) * snakeSize,
+                };
+            }
+        }
+
+        // Handle game over
+        function gameOver() {
+            score = 0;
+            snake = [
+                { x: canvas.width / 2, y: canvas.height / 2 },
+                { x: canvas.width / 2 - snakeSize, y: canvas.height / 2 },
+                { x: canvas.width / 2 - snakeSize * 2, y: canvas.height / 2 },
+            ];
+            direction = 'right';
+            food = {
+                x: Math.floor(Math.random() * (canvas.width / snakeSize)) * snakeSize,
+                y: Math.floor(Math.random() * (canvas.height / snakeSize)) * snakeSize,
+            };
+            isPaused = true;
+        }
+
+        // Handle user input
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowRight' && direction !== 'left') {
+                direction = 'right';
+            } else if (event.key === 'ArrowLeft' && direction !== 'right') {
+                direction = 'left';
+            } else if (event.key === 'ArrowUp' && direction !== 'down') {
+                direction = 'up';
+            } else if (event.key === 'ArrowDown' && direction !== 'up') {
+                direction = 'down';
+            } else if (event.key === ' ') {
+                isPaused = !isPaused;
+            }
+        });
+
+        // Main game loop
+        setInterval(() => {
+            update();
+            draw();
+        }, 100);
+    </script>
 </body>
 </html>

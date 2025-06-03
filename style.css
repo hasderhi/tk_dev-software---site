@@ -5,7 +5,13 @@ body {
   padding: 0;
   line-height: 1.6;
   transition: background 0.3s, color 0.3s;
+  
 }
+
+a {
+  color: #0099ff;
+}
+
 
 section {
   padding: 1rem 2rem;
@@ -216,4 +222,34 @@ body {
 
 .tag.discon {
   background-color: #505050;
+}
+
+.center-block {
+  max-width: fit-content;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+.center-block	strong {
+  font-size: large;
+}
+
+.center-block a {
+  color: #0099ff;
+}
+
+.center-block i {
+  color: #b8c28b;
+}
+
+@media (prefers-color-scheme: dark) {
+  .center-block i {
+    color: #b8c28b;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .center-block i {
+    color: #584401;
+  }
 }

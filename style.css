@@ -253,3 +253,16 @@ body {
     color: #584401;
   }
 }
+
+.error-msg {
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .canvas-container {
+    display: none;
+  }
+  .error-msg {
+    display: block;
+  }
+}

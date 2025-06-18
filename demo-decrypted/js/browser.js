@@ -112,8 +112,10 @@ function simulateBrowserNavigation(url) {
           <br><br>
           <a href="intranet.local" class="fake-link">Back to intranet</a>
         `;
+    } else if (normalizedUrl === 'tk-dev-software.com') {
+        content.innerHTML = `<iframe src="https://tk-dev-software.com/" height="590" width="970" title="Iframe"></iframe>`;
     } else {
-      content.innerHTML = `<h3>Website not available</h3><p>The address "${url}" is blocked or unreachable.</p>`;
+      content.innerHTML = `<h3 style="margin: 0px;">🚫 Website not available</h3><p>The address "${url}" is blocked or unreachable.</p>`;
     }
 
   

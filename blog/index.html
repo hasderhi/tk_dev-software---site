@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tk_dev - Software</title>
+  <link rel="icon" type="image/x-icon" href="favicon.png">
+  <meta name="description" content="tk_dev - Software with passion!" />
+  <link rel="icon" type="image/x-icon" href="favicon.png" />
+  <script id="kwAcceptAll" data-show-once="true" src="https://cdn.jsdelivr.net/gh/accept-all/cdn/banner-2024.js" defer></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <section id="hero">
+    <h1 class="hero-title">tk_dev - Blog</h1>
+    <h2 class="hero-subtitle">My Blog</h2>
+    <div class="link-buttons">
+    <a class="link-button" href="https://www.tk-dev-software.com/">Back</a>
+    </div>
+  </section>
+
+  <section id="search-bar">
+    <input type="text" id="searchInput" placeholder="Search posts..." />
+  </section>
+
+  <section id="project-listing">
+    <ul id="projectList">
+        <li class="project-item">
+            <a href="blog_post_18.06.25.html">My first post</a>
+            <div class="tags">
+                <span class="tag personal">Personal</span>
+            </div>
+            <p>Introducing myself</p>
+        </li>
+        <li class="project-item no-results" style="display: none;">
+            <strong>No results found.</strong>
+            <p>Try a different keyword.</p>
+        </li>
+    </ul>
+  </section>
+  <footer>
+    <p style="text-align: center; margin-top: 10%;">Copyright (c) 2023-2025 Tobias Kisling ('hasderhi', 'tk_dev'). All rights reserved.<br>This website is solely for information about my open source software development.<br><a href="privacy.html">Privacy, licensing and information</a></p>
+  </footer>
+<script>
+    const input = document.getElementById("searchInput");
+    const items = document.querySelectorAll(".project-item:not(.no-results)");
+    const noResults = document.querySelector(".no-results");
+
+    input.addEventListener("input", () => {
+        const filter = input.value.toLowerCase();
+        let visibleCount = 0;
+
+        items.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        const matches = text.includes(filter);
+        item.style.display = matches ? "" : "none";
+        if (matches) visibleCount++;
+        });
+
+        noResults.style.display = visibleCount === 0 ? "" : "none";
+    });
+</script>
+</body>
+</html>

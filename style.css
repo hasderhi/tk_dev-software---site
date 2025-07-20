@@ -27,6 +27,11 @@ section {
   margin-bottom: 0.5rem;
 }
 
+.hero-icon {
+  font-size: 4.5rem;
+  margin: 0vh;
+}
+
 .hero-subtitle {
   font-size: 1.2rem;
   color: var(--text-secondary);
